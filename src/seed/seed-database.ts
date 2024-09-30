@@ -1,4 +1,3 @@
-
 import prisma from '../lib/prisma';
 import { initialData } from './seed';
 import { countries } from './seed-countries';
@@ -9,6 +8,12 @@ async function main() {
 
   // 1. Borrar registros previos
   // await Promise.all( [
+
+  await prisma.orderAddress.deleteMany();
+  await prisma.orderItem.deleteMany();
+  await prisma.order.deleteMany();
+
+
   await prisma.userAddress.deleteMany();
   await prisma.user.deleteMany();
   await prisma.country.deleteMany();
@@ -50,7 +55,7 @@ async function main() {
   }, {} as Record<string, string>); //<string=shirt, string=categoryID>
   
   
-  
+
   // Productos
 
   products.forEach( async(product) => {
@@ -77,8 +82,20 @@ async function main() {
 
   });
 
+
+
+
+
   console.log( 'Seed ejecutado correctamente' );
 }
+
+
+
+
+
+
+
+
 
 ( () => {
 
